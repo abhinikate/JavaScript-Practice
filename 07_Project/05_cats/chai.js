@@ -15,15 +15,27 @@ randomCatPhoto = (json) => {
   section.appendChild(image);
 };
 
+// async function getRandomCats() {
+//   section.innerHTML = "";
+//   try {
+//     const response = await fetch(url);
+//     const json = await response.json();
+//     console.log("JSON:", json);
+//     return randomCatPhoto(json);
+//   } catch (e) {
+//     console.log("This is an error");
+//     console.log(e);
+//   }
+// }
+
 async function getRandomCats() {
-  section.innerHTML = "";
-  try {
-    const response = await fetch(url);
-    const json = await response.json();
-    console.log("JSON:", json);
-    return randomCatPhoto(json);
-  } catch (e) {
-    console.log("This is an error");
-    console.log(e);
-  }
+ section.innerHTML = "";
+fetch(url)
+.then((response) => {
+  return response.json()
+})
+.then((data) => {
+  return randomCatPhoto(data)
+})
+.catch((error) => console.log(error))
 }
